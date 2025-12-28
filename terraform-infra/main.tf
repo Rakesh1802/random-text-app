@@ -16,6 +16,17 @@ resource "azurerm_service_plan" "asp" {
   sku_name            = "B1"
 }
 
+# Reference the existing Key Vault
+data "azurerm_key_vault" "existing" {
+  name                 = "my-key-vault-101"
+  resource_group_name  = "my-key-vault-rg"
+}
+
+data "azurerm_key_vault_secret" "db_password" {
+  name         = "db-password"
+  key_vault_id = data.azurerm_key_vault.existing.id
+}
+
 resource "azurerm_linux_web_app" "web" {
   name                = "webapp-${random_integer.suffix.result}"
   resource_group_name = azurerm_resource_group.rg.name
@@ -31,7 +42,11 @@ resource "azurerm_linux_web_app" "web" {
   }
 
   app_settings = {
-    WEBSITE_RUN_FROM_PACKAGE = "1"
+    WEBSITE_RUN_FROM_PACKAGE = "1",
+    DB_NAME = var.sql_db_name,
+    DB_USER = var.sql_admin_username,
+    DB_PASSWORD = data.azurerm_key_vault_secret.db_password.value
+    DB_SERVER = azurerm_mssql_server.sql_server.fully_qualified_domain_name
   }
 }
 
@@ -41,11 +56,11 @@ resource "azurerm_mssql_server" "sql_server" {
   location                     = azurerm_resource_group.rg.location
   version                      = "12.0"
   administrator_login          = var.sql_admin_username
-  administrator_login_password = var.sql_admin_password
+  administrator_login_password = data.azurerm_key_vault_secret.db_password.value
 }
 
 resource "azurerm_mssql_database" "sql_db" {
-  name      = "appdb"
+  name      = var.sql_db_name
   server_id = azurerm_mssql_server.sql_server.id
   sku_name  = "Basic"
 }
