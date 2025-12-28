@@ -1,0 +1,20 @@
+{
+  "name": "express-path-sample",
+  "version": "1.0.0",
+  "description": "A sample project using express and the built-in path module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "express",
+    "path",
+    "node"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "mssql": "^9.1.1"
+  }
+}

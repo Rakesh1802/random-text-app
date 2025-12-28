@@ -1,0 +1,12 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+.crash.log
+
+# Secrets
+*.tfvars
+.env
+
+# node_modules
+node_modules/
