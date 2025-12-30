@@ -79,14 +79,21 @@ resource "azurerm_linux_web_app" "web" {
       node_version = "20-lts"
     }
     always_on = true
+    vnet_route_all_enabled = true
   }
 
   app_settings = {
     WEBSITE_RUN_FROM_PACKAGE = "1",
     DB_NAME = var.sql_db_name,
     DB_USER = var.sql_admin_username,
-    DB_PASSWORD = data.azurerm_key_vault_secret.db_password.value
+    DB_PASSWORD = data.azurerm_key_vault_secret.db_password.value,
     DB_SERVER = azurerm_mssql_server.sql_server.fully_qualified_domain_name
+  }
+
+  lifecycle {
+    ignore_changes = [
+      virtual_network_subnet_id,
+    ]
   }
 }
 
@@ -123,6 +130,11 @@ resource "azurerm_private_endpoint" "sql_pe" {
     private_connection_resource_id = azurerm_mssql_server.sql_server.id
     subresource_names              = ["sqlServer"]
     is_manual_connection           = false
+  }
+
+  private_dns_zone_group {
+    name                 = "sql-dns-zone-group"
+    private_dns_zone_ids = [azurerm_private_dns_zone.sql_dns.id]
   }
 }
 
