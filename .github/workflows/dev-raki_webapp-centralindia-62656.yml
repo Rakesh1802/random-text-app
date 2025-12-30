@@ -51,7 +51,7 @@ jobs:
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_495F795BD35C4F03A97F9713414D973D }}
 
       - name: 'Deploy to Azure Web App in Central India'
-        id: deploy-to-webapp
+        id: deploy-to-webapp-centralindia
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'webapp-centralindia-62656'
@@ -59,7 +59,7 @@ jobs:
           package: app.zip
 
       - name: 'Deploy to Azure Web App in East Asia'
-        id: deploy-to-webapp
+        id: deploy-to-webapp-eastasia
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'webapp-eastasia-31557'
