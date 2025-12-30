@@ -63,6 +63,31 @@ app.get('/api/random-text', async (req, res) => {
 });
 
 /* ===============================
+   Health check
+   =============================== */
+app.get('/health', async (req, res) => {
+    try {
+        const pool = await getPool();
+
+        // Lightweight connectivity check
+        await pool.request().query('SELECT 1');
+
+        res.status(200).json({
+            status: 'UP',
+            database: 'CONNECTED'
+        });
+    } catch (err) {
+        console.error('Health check failed:', err);
+
+        res.status(503).json({
+            status: 'DOWN',
+            database: 'DISCONNECTED'
+        });
+    }
+});
+
+
+/* ===============================
    Start server
    =============================== */
 app.listen(PORT, () => {
