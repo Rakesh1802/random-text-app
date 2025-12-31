@@ -79,7 +79,6 @@ resource "azurerm_linux_web_app" "web" {
       node_version = "20-lts"
     }
     always_on = true
-    vnet_route_all_enabled = true
   }
 
   app_settings = {
@@ -150,20 +149,6 @@ resource "azurerm_private_dns_zone_virtual_network_link" "dns_link" {
   virtual_network_id   = azurerm_virtual_network.vnet.id
 }
 
-# data "azurerm_client_config" "current" {}
-
-# resource "null_resource" "sql_permissions" {
-#   depends_on = [
-#     azurerm_mssql_server.sql_server
-#   ]
-
-#   provisioner "local-exec" {
-#     command = <<EOT
-# sqlcmd -S ${azurerm_mssql_server.sql_server.fully_qualified_domain_name} -d ${azurerm_mssql_database.sql_db.name} -G -Q "IF NOT EXISTS (SELECT 1 FROM sys.database_principals WHERE name = 'app-prod') BEGIN CREATE USER [app-prod] FROM EXTERNAL PROVIDER; END; ALTER ROLE db_datareader ADD MEMBER [app-prod]; ALTER ROLE db_datawriter ADD MEMBER [app-prod];"
-# EOT
-#   }
-# }
-
 # Jump host stuff
 resource "azurerm_subnet" "jump" {
   name                 = "snet-jump"
@@ -185,7 +170,7 @@ resource "azurerm_network_security_group" "jump_nsg" {
     protocol                    = "Tcp"
     source_port_range           = "*"
     destination_port_range      = "22"
-    source_address_prefix       = "157.50.100.107/32"
+    source_address_prefix       = "157.50.102.255/32"
     destination_address_prefix  = "*"
   }
 }
