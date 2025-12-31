@@ -1,27 +1,60 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Random Text</title>
+    <title>Quote of the Day</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            font-family: "Segoe UI", Roboto, Arial, sans-serif;
+            background: linear-gradient(135deg, #1e1e2f, #2b2b45);
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .quote-card {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 30px 40px;
+            border-radius: 16px;
+            max-width: 600px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        h1 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+            letter-spacing: 1px;
+        }
+
+        .quote-text {
+            font-size: 1.4rem;
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .quote-author {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #cfd3ff;
+        }
+    </style>
 </head>
 <body>
-    <h1>Quote of the day</h1>
-    <p id="quote">Loading...</p>
+
+    <div class="quote-card">
+        <h1>Quote of the Day</h1>
+        <p id="quote" class="quote-text">Loading...</p>
+        <div id="author" class="quote-author"></div>
+    </div>
 
     <script src="script.js"></script>
 </body>
 </html>
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Azure Test Page</title>
-</head>
-<body>
-    <h1>Hello from Azure App Service!</h1>
-    <p>Your Node.js environment is working correctly in 2025.</p>
-</body>
-</html> -->
-
-

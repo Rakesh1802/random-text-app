@@ -45,16 +45,16 @@ app.get('/api/random-text', async (req, res) => {
         const pool = await getPool();
 
         const result = await pool.request().query(`
-            SELECT TOP 1 text
+            SELECT TOP 1 text, author
             FROM quotes
             ORDER BY NEWID()
         `);
 
         if (result.recordset.length === 0) {
-            return res.json({ text: null });
+            return res.json({ text: null, author: null });
         }
 
-        res.json({ text: result.recordset[0].text });
+        res.json({ text: result.recordset[0].text, author: result.recordset[0].author });
 
     } catch (err) {
         console.error('SQL error:', err);
