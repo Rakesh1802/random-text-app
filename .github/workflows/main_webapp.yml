@@ -6,7 +6,7 @@ name: Build and deploy Node.js app to Azure Web App - webapp-centralindia-93742 
 on:
   push:
     branches:
-      - dev/raki
+      - main
   workflow_dispatch:
 
 jobs:
