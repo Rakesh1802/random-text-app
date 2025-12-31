@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Node.js app to Azure Web App - webapp-centralindia-93742 and webapp-eastasia-49319
+name: Build and deploy Node.js app to Azure Web App - webapp-centralindia-50158 and webapp-eastasia-69651
 
 on:
   push:
@@ -54,7 +54,7 @@ jobs:
         id: deploy-to-webapp-centralindia
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'webapp-centralindia-93742'
+          app-name: 'webapp-centralindia-50158'
           slot-name: 'Production'
           package: app.zip
 
@@ -62,6 +62,6 @@ jobs:
         id: deploy-to-webapp-eastasia
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'webapp-eastasia-49319'
+          app-name: 'webapp-eastasia-69651'
           slot-name: 'Production'
           package: app.zip
