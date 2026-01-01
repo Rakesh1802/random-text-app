@@ -82,13 +82,13 @@ application code for the random quote/text display.
 │           └── variables.tf
 ├── .gitignore
 └── README.md
-→
+```
 
 ---
 
 ## Terraform State
 
-As of now, the state is not added to the backend
+As of now, the state file is not added to the backend
 
 ---
 
@@ -113,6 +113,16 @@ All the app code resides in the app folder
 ## Azure infrastructure code
 Required infra deployed by the Terraform IAC tool.
 - The code is modularized for better maintainability.
+- Module **dns-link** creates private Dns zone and links it with vnets
+- Module **jump-vm** creates the VM in the Vnet's subnet of primary region
+- Module **oidc-db** creates user assigned managed identity for the apps to be to connect to the primary Database in the sql server
+- Module **oidc-github** creates user assigned managed identity for the github actions CI/CD pipeline to be able to deploy the app code to Azure web app service
+- Module **region** creates common resources accross the both the regions like, Vnets, app service plan, web app service, subnets, SQL servers, private endpoints etc.,
+- Module **resource-group** creates resource groups
+- Module **sql-geo** creates DB in the primary regions Sql server, and fail over group for it, to maintain High Avaialbility of the database
+- Module **traffic-manager** creates traffic manager profile, and links app endpoints of the both the regions
+- Module **vnet-peering** creates vnet peering between vnet1 and vnet2, also vice-versa
+
 
 ---
 
@@ -126,7 +136,7 @@ This infra and application is deployed in two regions Central India and East Asi
 - The application is deployed to Azure Web App Service with two instances per region.
 - App Service instances are integrated with the VNets.
 - A jump VM is deployed inside the VNet for data population and user management.
-- Vnet-peering established between the Vnets, so the primary data base can be accessed by both the regions apps.
+- Vnet-peering established between the Vnets, so the primary data base can be accessed by both the region's apps.
 
 ---
 
@@ -134,6 +144,13 @@ This infra and application is deployed in two regions Central India and East Asi
 The app will be automatically deployed to both the regions, via automated github actions workflow.
 - It'll build the node.js app and compiles a zip file, will all the necessary files.
 - The zip file will be deployed azure web app service in both the regions.
+
+---
+
+## High Availability
+To maintain, High availability the application is deployed with two instances in the azure web app service.
+- To maintain HA incase of regional outage, deployed the application in two regions and configured Azure Traffic manager ( though FrontDoor would've been ideal). As i'm using free subscription it did n't allow me to deploy azure front door.
+- To maintain DB HA, created and added it faiover group, which replicates read-only replica in secondary region.
 
 ---
 
