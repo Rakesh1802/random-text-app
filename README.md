@@ -111,17 +111,17 @@ All the app code resides in the app folder
 ---
 
 ## Azure infrastructure code
-Required infra deployed by the Terraform IAC tool.
+Required infra deployed by the Terraform IAC tool. All the terraform code resides in the terraform-infra folder.
 - The code is modularized for better maintainability.
-- Module **dns-link** creates private Dns zone and links it with vnets
-- Module **jump-vm** creates the VM in the Vnet's subnet of primary region
-- Module **oidc-db** creates user assigned managed identity for the apps to be to connect to the primary Database in the sql server
-- Module **oidc-github** creates user assigned managed identity for the github actions CI/CD pipeline to be able to deploy the app code to Azure web app service
+- Module **dns-link** creates private Dns zone and links it with vnets.
+- Module **jump-vm** creates the VM in the Vnet's subnet of primary region.
+- Module **oidc-db** creates user assigned managed identity for the apps to be able to connect to the primary Database in the sql server.
+- Module **oidc-github** creates user assigned managed identity for the github actions CI/CD pipeline to be able to deploy the app code to Azure web app service.
 - Module **region** creates common resources accross the both the regions like, Vnets, app service plan, web app service, subnets, SQL servers, private endpoints etc.,
-- Module **resource-group** creates resource groups
-- Module **sql-geo** creates DB in the primary regions Sql server, and fail over group for it, to maintain High Avaialbility of the database
-- Module **traffic-manager** creates traffic manager profile, and links app endpoints of the both the regions
-- Module **vnet-peering** creates vnet peering between vnet1 and vnet2, also vice-versa
+- Module **resource-group** creates resource groups.
+- Module **sql-geo** creates DB in the primary regions Sql server, and fail over group for it, to maintain High Avaialbility of the database.
+- Module **traffic-manager** creates traffic manager profile, and links app endpoints of the both the regions.
+- Module **vnet-peering** creates vnet peering between vnet1 and vnet2, also vice-versa.
 
 
 ---
