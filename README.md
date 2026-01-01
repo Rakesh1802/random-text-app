@@ -21,67 +21,65 @@ application code for the random quote/text display.
 ## Repository Structure
 
 .
-├── .gihub
-│ ├── workflows/
-│ |    ├── main_webapp.yml
-| |
+├── .github
+│   └── workflows
+│       └── main_webapp.yml
 ├── app
-│ ├── db/
-│ |     ├── init.sql
-│ ├── public/
-│ |     ├── index.html
-│ |     ├── script.js
-│ └── package.json
-│ ├── package-lock.json
-│ ├── server.js
-│ |
+├── db
+│   └── init.sql
+├── public
+│   ├── index.html
+│   └── script.js
+├── package.json
+├── package-lock.json
+├── server.js
 ├── terraform-infra
-│ ├── envs/
-│ |     ├── .terraform.lock.hcl
-│ |     ├── main.tf
-│ |     ├── providers.tf
-│ |     └── variables.tf
-│ ├── modules/
-│ |     ├── dns-link/
-│ |     |     ├── main.tf
-│ |     |     ├── outputs.tf
-│ |     |     └── variables.tf
-│ |     ├── front-door/
-│ |     |     ├── main.tf
-│ |     |     ├── outputs.tf
-│ |     |     └── variables.tf
-│ |     ├── jump-vm/
-│ |     |     ├── main.tf
-│ |     |     ├── outputs.tf
-│ |     |     └── variables.tf
-│ |     ├── oidc-db/
-│ |     |     ├── main.tf
-│ |     |     ├── outputs.tf
-│ |     |     └── variables.tf
-│ |     ├── oidc-github/
-│ |     |     ├── main.tf
-│ |     |     ├── outputs.tf
-│ |     |     └── variables.tf
-│ |     ├── region/
-│ |     |     ├── main.tf
-│ |     |     ├── outputs.tf
-│ |     |     └── variables.tf
-│ |     ├── resource-group/
-│ |     |     ├── main.tf
-│ |     |     ├── outputs.tf
-│ |     |     └── variables.tf
-│ |     ├── sql-geo/
-│ |     |     ├── main.tf
-│ |     |     ├── outputs.tf
-│ |     |     └── variables.tf
-│ |     ├── traffic-manager/
-│ |     |     ├── main.tf
-│ |     |     ├── outputs.tf
-│ |     |     └── variables.tf
-│ |     ├── vnet-peering/
-│ |     |     ├── main.tf
-│ |     |     ├── outputs.tf
-│ |     |     └── variables.tf
+│   ├── envs
+│   │   ├── .terraform.lock.hcl
+│   │   ├── main.tf
+│   │   ├── providers.tf
+│   │   └── variables.tf
+│   └── modules
+│       ├── dns-link
+│       │   ├── main.tf
+│       │   ├── outputs.tf
+│       │   └── variables.tf
+│       ├── front-door
+│       │   ├── main.tf
+│       │   ├── outputs.tf
+│       │   └── variables.tf
+│       ├── jump-vm
+│       │   ├── main.tf
+│       │   ├── outputs.tf
+│       │   └── variables.tf
+│       ├── oidc-db
+│       │   ├── main.tf
+│       │   ├── outputs.tf
+│       │   └── variables.tf
+│       ├── oidc-github
+│       │   ├── main.tf
+│       │   ├── outputs.tf
+│       │   └── variables.tf
+│       ├── region
+│       │   ├── main.tf
+│       │   ├── outputs.tf
+│       │   └── variables.tf
+│       ├── resource-group
+│       │   ├── main.tf
+│       │   ├── outputs.tf
+│       │   └── variables.tf
+│       ├── sql-geo
+│       │   ├── main.tf
+│       │   ├── outputs.tf
+│       │   └── variables.tf
+│       ├── traffic-manager
+│       │   ├── main.tf
+│       │   ├── outputs.tf
+│       │   └── variables.tf
+│       └── vnet-peering
+│           ├── main.tf
+│           ├── outputs.tf
+│           └── variables.tf
 ├── .gitignore
 └── README.md
 
@@ -132,8 +130,8 @@ This infra and application is deployed in two regions Central India and East Asi
 ---
 
 ## Applicatin details:
-App url via traffic manager: http://app-prod.trafficmanager.net/
-App url in the region Central India : https://webapp-centralindia-15590.azurewebsites.net/
-App url in the region East Asia : https://webapp-eastasia-28062.azurewebsites.net/
+- App url via traffic manager: http://app-prod.trafficmanager.net/
+- App url in the region Central India : https://webapp-centralindia-15590.azurewebsites.net/
+- App url in the region East Asia : https://webapp-eastasia-28062.azurewebsites.net/
 
 
