@@ -50,6 +50,7 @@ jobs:
           tenant-id: ${{ secrets.AZURE_APP_SERVICE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_APP_SERVICE_SUBSCRIPTION_ID }}
 
+      # Deploy to the primary region
       - name: 'Deploy to Azure Web App in Central India'
         id: deploy-to-webapp-centralindia
         uses: azure/webapps-deploy@v3
@@ -58,6 +59,7 @@ jobs:
           slot-name: 'Production'
           package: app.zip
 
+      # Deploy to the secondary region
       - name: 'Deploy to Azure Web App in East Asia'
         id: deploy-to-webapp-eastasia
         uses: azure/webapps-deploy@v3
