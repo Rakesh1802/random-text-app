@@ -82,6 +82,7 @@ application code for the random quote/text display.
 │           └── variables.tf
 ├── .gitignore
 └── README.md
+→
 
 ---
 
@@ -126,6 +127,13 @@ This infra and application is deployed in two regions Central India and East Asi
 - App Service instances are integrated with the VNets.
 - A jump VM is deployed inside the VNet for data population and user management.
 - Vnet-peering established between the Vnets, so the primary data base can be accessed by both the regions apps.
+
+---
+
+## CI/CD deployment
+The app will be automatically deployed to both the regions, via automated github actions workflow.
+- It'll build the node.js app and compiles a zip file, will all the necessary files.
+- The zip file will be deployed azure web app service in both the regions.
 
 ---
 
