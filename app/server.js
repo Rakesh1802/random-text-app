@@ -9,11 +9,15 @@ const PORT = process.env.PORT;
    Azure SQL configuration
    =============================== */
 const sqlConfig = {
-    server: process.env.DB_SERVER,            // <server>.database.windows.net
-    database: process.env.DB_NAME,             // appdb
-    user: process.env.DB_USER,                 // sqladmin
-    password: process.env.DB_PASSWORD,
+    server: process.env.DB_SERVER, 
+    database: process.env.DB_NAME,
     port: 1433,
+    authentication: {
+        type: 'azure-active-directory-default', 
+        options: {
+            clientId: process.env.AZURE_CLIENT_ID 
+        }
+    },
     options: {
         encrypt: true,
         trustServerCertificate: false
