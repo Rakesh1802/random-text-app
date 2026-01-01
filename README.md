@@ -19,7 +19,7 @@ application code for the random quote/text display.
 ---
 
 ## Repository Structure
-
+```text
 .
 ├── .github
 │   └── workflows
