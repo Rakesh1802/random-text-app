@@ -88,7 +88,7 @@ application code for the random quote/text display.
 
 ## Terraform State
 
-As of now, the state file is not added to the backend
+Terraform state file added to the remote backend Azure blob storage account.
 
 ---
 
